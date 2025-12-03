@@ -8,10 +8,18 @@ import os
 app = Flask(__name__)
 
 # ================= 設定區 =================
-# 建議將這些敏感資訊放在環境變數中，這裡為了教學方便直接填入
-LINE_CHANNEL_ACCESS_TOKEN = 'YUeziHSnV8Jt70QRKQiDHLRnXpuAk437fq+HNllSeCYXOVq6paCT0Ry1PI+ih4QhHLBOFC3x9UCR/qxyQuvGHyRLI1NCMf8Z+A56WTfpLHCksNofHDxn5ifnqJHlk/Nz8zasnGl+sU8dWjhiW3x/0QdB04t89/1O/w1cDnyilFU='
-LINE_CHANNEL_SECRET = 'c50431f1d96b29752fdb212a623afd58'
-GEMINI_API_KEY = 'AIzaSyA3ebaw7r1hYrjf_tciUX1ATo62mERu_Vg'
+# 從環境變數中讀取敏感資訊
+LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
+LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+
+# 檢查是否有任何一個金鑰未設定
+if not all([LINE_CHANNEL_ACCESS_TOKEN, LINE_CHANNEL_SECRET, GEMINI_API_KEY]):
+    # 可以在這裡加入更詳細的日誌記錄或錯誤處理
+    print("錯誤：部分或全部的環境變數（LINE_CHANNEL_ACCESS_TOKEN, LINE_CHANNEL_SECRET, GEMINI_API_KEY）未設定。")
+    # 根據您的需求，您可能會希望在這裡直接退出程式
+    # import sys
+    # sys.exit(1)
 # =========================================
 
 # 設定 LINE Bot
