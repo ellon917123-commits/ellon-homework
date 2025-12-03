@@ -28,7 +28,7 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 # 設定 Gemini
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.0-pro') # 使用 gemini-1.0-pro 模型
+model = genai.GenerativeModel('models/gemini-2.5-flash') # 使用 models/gemini-2.5-flash 模型
 
 
 @app.route("/callback", methods=['POST'])
